@@ -22,7 +22,7 @@ by doing, working through lab exercises designed to build on the presented mater
 <li>Learn how to deal with large multi module builds</li>
 </ul>
 <h2 id="prerequisites">Prerequisites</h2>
-<p>This course assumes a good understanding of the Java language and working experience with Gradle and Groovy. If you are not experienced with Gradle or Groovy you should attend the <a href="/training/intro-to-gradle">Introduction to Gradle training class</a>.</p>
+<p>This course assumes a good understanding of the Java language and working experience with Gradle and Groovy. If you are not experienced with Gradle or Groovy you should attend the Introduction to Gradle training class.</p>
 <h2 id="audience">Audience</h2>
 <p>Experienced Gradle users are encouraged to attend the Advanced Gradle Fundamentals training.</p>
 
