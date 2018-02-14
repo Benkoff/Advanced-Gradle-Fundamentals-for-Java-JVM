@@ -4,5 +4,24 @@
     3. Instead of importing the Ant build, implement a Gradle task that uses the Ant checksum task.
 
         Hint: To access an Ant property named `foo`, use `ant.properties.foo` or `ant.foo`.
-*/    
-    
+
+ant.importBuild "build.xml"
+printChecksum {
+	doFirst { println "before Ant target" }
+	doLast { println "after Ant target" }
+}
+*/
+	
+ant.importBuild "build.xml"
+task printChecksum2 {
+	doLast {
+		ant.checksum(property: 'checksumOut') {
+			fileset(dir: '.') {
+				include(name: 'agile.txt')
+			}
+		}
+			
+		ant.echo(message: ant.properties.checksumOut)
+	}
+}
+	

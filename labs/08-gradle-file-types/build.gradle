@@ -5,4 +5,31 @@
     4. Add a task `copyFiles` that copies all files of the file tree from 1.) into `build/files`.
 
         Hint: `FileTree`, `FileCollection` and `Set<File>` objects are valid inputs for the Copy task.
+
+		D:\...>gradle showFiles
+		D:\...>gradle copyTree
+		D:\...>gradle copyFiles
 */    
+
+def content = fileTree('content').matching { include '**/*.txt'} 
+
+task showFiles {
+	doLast {
+		content.each { File file ->
+			println file
+		}
+	}
+}
+
+buildDir = 'target' //change build dir
+
+task copyTree(type: Copy) {
+	from content
+	into "$buildDir/filetree"
+}
+
+task copyFiles(type: Copy) {
+	from content.files
+	into "$buildDir/files"
+}
+
