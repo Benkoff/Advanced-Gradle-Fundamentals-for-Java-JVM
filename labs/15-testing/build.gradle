@@ -7,6 +7,9 @@
     5. Instead of using a test listener, configure test logging to show skipped tests (in addition to failed tests).
         Hint: Consult the DSL reference for the `org.gradle.api.tasks.testing.Test.testLogging` property for how to configure test logging.
     
+	...>gradle clean
+	...>gradle test --console=plain
+	
     6. (Optional) Implement a test listener that writes the names of all tests that run longer than 20 milliseconds to a text file.
     7. (Optional) After a test run has completed, automatically open the text file (in the default text editor) if long-running tests were found.
         Hint: To execute an external command in Groovy, use `"command args".execute()`.
@@ -25,7 +28,22 @@ dependencies {
     testCompile "junit:junit:4.11"
 }
 
+test {	
+	forkEvery = 50
+	maxParallelForks = 2
+	
+	testLogging {
+		events "skipped", "failed" //, "started"
+	}
 
+/*
+	afterTest {
+		if(result.resultType == TestResult.ResultType.SKIPPED) {
+			println "skipped"
+		}
+	}
+*/
+}
 
 
 

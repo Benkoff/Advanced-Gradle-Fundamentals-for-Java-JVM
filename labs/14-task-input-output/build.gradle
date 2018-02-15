@@ -17,17 +17,29 @@
     12. (Optional)  Remove the input annotation for the `Size` task and execute `sizeGenerated` again. What do you see?
 */
 
-apply plugin: "base" // for cleanTextsize task
+apply plugin: "base" // for cleanTextsize task. Plugin used to clean, archive etc.
 
 class Size extends DefaultTask {
+	@InputFiles
     FileTree inputFiles
 
+	@OutputFile
     File outputFile
 
     @TaskAction
     void generate() {
         outputFile.text = inputFiles.files.collect { it.size() }.sum(0)
     }
+}
+
+task textsize(type: Size) {
+	inputFiles = fileTree('src/textfiles')
+	outputFile = file('$buildDir/textsize.txt')
+}
+
+task showTextsize {	
+	textsize.generate()
+	doLast { println textsize.outputFile.text }
 }
 
 // Only needed for optional exercises
